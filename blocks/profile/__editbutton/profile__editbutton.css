@@ -23,7 +23,8 @@
 @media (max-width: 470px) {
    .profile__editbutton {
      right: -34px;
-    
+     width: 18px;
+     height: 18px;
      
 
      

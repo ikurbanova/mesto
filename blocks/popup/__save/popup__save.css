@@ -8,5 +8,10 @@
  font-size: 18px;
  font-weight: 400;
  height: 50px;
+ cursor: pointer;
 
+}
+
+.popup__save:hover {
+   opacity: 0.8;
 }

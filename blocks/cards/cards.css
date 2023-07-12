@@ -10,23 +10,16 @@
 
 }
 
+@media (max-width: 880px) {
+   .cards {
+      max-width: 581px;
+   }
+}
 
 @media (max-width: 580px) {
    .cards {
       gap: 20px;
-      width: 282px;
-      
-
-     
+      width: 282px;   
    }
 }
 
-@media (max-width: 880px) {
-   .cards {
-      max-width: 581px;
-     
-      
-
-     
-   }
-}
