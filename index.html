@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="pages/index.css" />
+    <title>Mesto</title>
+  </head>
+  <body class="body">
+    <div class="page">
+      <header class="header">
+        <a href="#" class="logo link">
+          <img
+            src="./images/logo header.png"
+            alt="лого проекта"
+            class="logo__image"
+          />
+        </a>
+      </header>
+      <main class="content">
+        <section class="profile">
+            <img
+              src="./images/image profile.jpeg"
+              alt="фото исследователя"
+              class="profile__avatar-image"
+            />
+          
+          <div class="profile__description">
+            <div class="profile__info">
+              <h1 class="profile__name">
+                <span class="profile__names">Жак-Ив Кусто</span>
+                <button class="profile__editbutton profile__editbutton_active">
+                  <img
+              src="./images/Edit Button.svg"
+              alt="кнопка"
+              class="profile__editbutton-image"
+            />
+                </button>
+              </h1>
+              <p class="profile__job">Исследователь океана</p>
+            </div>
+          </div> 
+          <button class="profile__addbutton">
+            <img
+              src="./images/Vector.svg"
+              alt="кнопка"
+              class="profile__addbutton-image"
+            />
+          </button>
+        </section>
+        <section class="gallery">
+          <ul class="cards">
+            <li class="card">
+              <img
+                src="./images/kirill-pershin-1088404-unsplash.jpeg"
+                alt="фото Карачаевска"
+                class="card__image"
+              />
+              <div class="card__content">
+                <p class="card__title">
+                  Карачаевск
+                  <button class="card__icon card__icon_active">
+                    <img
+                src="./images/Group.svg"
+                alt="кнопка сердечко"
+                class="card__icon-image"
+              />
+                  </button>
+                </p>
+              </div>
+            </li>
+            <li class="card">
+              <img
+                src="./images/kirill-pershin-1404681-unsplash.jpeg"
+                alt="фото горы Эльбрус"
+                class="card__image"
+              />
+              <div class="card__content">
+                <p class="card__title">
+                  Гора Эльбрус
+                  <button class="card__icon card__icon_active">
+                    <img
+                      src="./images/Group.svg"
+                      alt="рисунок сердечка"
+                      class="card__icon-image"
+                    />
+                  </button>
+                </p>
+              </div>
+            </li>
+            <li class="card">
+              <img
+                src="./images/kirill-pershin-1556355-unsplash.jpeg"
+                alt="фото Домбая"
+                class="card__image"
+              />
+              <div class="card__content">
+                <p class="card__title">
+                  Домбай
+                  <button class="card__icon card__icon_active">
+                    <img
+                      src="./images/Group.svg"
+                      alt="рисунок сердечка"
+                      class="card__icon-image"
+                    />
+                  </button>
+                </p>
+              </div>
+            </li>
+            <li class="card">
+              <img
+                src="./images/kirill-pershin-1404681-unsplash.jpeg"
+                alt="фото горы Эльбрус"
+                class="card__image"
+              />
+              <div class="card__content">
+                <p class="card__title">
+                  Гора Эльбрус
+                  <button class="card__icon card__icon_active">
+                    <img
+                      src="./images/Group.svg"
+                      alt="рисунок сердечка"
+                      class="card__icon-image"
+                    />
+                  </button>
+                </p>
+              </div>
+            </li>
+            <li class="card">
+              <img
+                src="./images/kirill-pershin-1556355-unsplash.jpeg"
+                alt="фото Домбая"
+                class="card__image"
+              />
+              <div class="card__content">
+                <p class="card__title">
+                  Домбай
+                  <button class="card__icon card__icon_active">
+                    <img
+                      src="./images/Group.svg"
+                      alt="рисунок сердечка"
+                      class="card__icon-image"
+                    />
+                  </button>
+                </p>
+              </div>
+            </li>
+            <li class="card">
+              <img
+                src="./images/kirill-pershin-1088404-unsplash.jpeg"
+                alt="фото Карачаевска"
+                class="card__image"
+              />
+              <div class="card__content">
+                <p class="card__title">
+                  Карачаево-Ч...
+                  <button class="card__icon card__icon_active">
+                    <img
+                      src="./images/Group.svg"
+                      alt="рисунок сердечка"
+                      class="card__icon-image"
+                      
+                    />
+                  </button>
+                </p>
+              </div>
+            </li>
+          </ul>
+        </section>
+      </main>
+      <footer class="footer">
+        <p class="footer__text">© 2020 Mesto Russia</p>
+      </footer>
+    </div>
+    <div class="popup">
+      <div class="popup__container">
+       <bottom class="popup__close"></bottom>
+       <div class="popup__text">
+         <h2 class="popup__title">Редактировать профиль</h2>
+         <form class="input">
+           <input type="text" placeholder="Имя" value="Жак-Ив Кусто" class="input__text input__text_name">
+           <input type="text" placeholder="О себе" value="Исследователь океана" class="input__text input__text_job">
+           <button class="popup__save">Сохранить</button>
+       
+          </form>
+   
+      </div>
+    </div>
+    </section>
+    <script src="script.js"></script>
+  </body>
+</html>
