@@ -1,0 +1,8 @@
+.card__content {
+   background-color: #FFF;
+   color: #000;
+   display: flex;
+   margin: 0;
+   height: 79px;
+   border-radius: 0 0 10px 10px;
+}

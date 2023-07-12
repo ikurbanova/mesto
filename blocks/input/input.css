@@ -1,0 +1,12 @@
+.input {
+width: 100%;
+display: flex;
+flex-direction: column;
+gap: 30px;
+padding-top: 54px;
+padding-bottom: 48px;
+box-sizing: border-box;
+
+
+
+}

@@ -1,0 +1,13 @@
+.card__title {
+   margin: 0 auto;
+   width: 246px;
+   display: flex;
+   justify-content: space-between;
+   font-size: 24px;
+   font-family: "Inter", "Arial", sans-serif;
+   font-style: normal;
+   font-weight: 900;
+   line-height: normal;
+   align-items: center;
+   overflow: hidden;
+    } 

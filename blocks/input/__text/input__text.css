@@ -1,0 +1,14 @@
+.input__text {
+   margin: 0;
+   height: 27px;
+   font-size: 14px;
+   font-weight: 400;
+   border: none;
+   border-bottom: 1px solid;
+   border-bottom-color: rgba(0, 0, 0, .2);
+   color: #000;
+   text-overflow: ellipsis;
+   white-space: nowrap;
+   overflow: hidden;
+    } 
+
