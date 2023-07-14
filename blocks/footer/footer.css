@@ -7,15 +7,15 @@
    height: 100%;
 }
 
-@media (max-width: 880px) {
+@media (max-width: 900px) {
    .footer {
      padding-top: 48px;
      padding-bottom: 36px;
-     width: 581px;
+     max-width: 581px;
    }
 }
 
-@media (max-width: 580px) {
+@media (max-width: 600px) {
    .footer {
      width: 282px;
    }

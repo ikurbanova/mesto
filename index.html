@@ -27,29 +27,28 @@
           
           <div class="profile__description">
             <div class="profile__info">
-              <h1 class="profile__name">
-                <span class="profile__names">Жак-Ив Кусто</span>
-                <button class="profile__editbutton profile__editbutton_active">
+              <h1 class="profile__name">Жак-Ив Кусто</h1>
+              <button type="button" class="profile__edit-button profile__edit-button_active">
                   <img
               src="./images/editbutton.svg"
-              alt="кнопка"
-              class="profile__editbutton-image"
+              alt="кнопка для редактирования данных пользователя"
+              class="profile__edit-image"
             >
                 </button>
-              </h1>
-              <p class="profile__job">Исследователь океана</p>
             </div>
+              <p class="profile__job">Исследователь океана</p>
+            
           </div> 
-          <button class="profile__addbutton">
+          <button type="button" class="profile__add-button">
             <img
               src="./images/addbutton.svg"
-              alt="кнопка"
-              class="profile__addbutton-image"
+              alt="кнопка для добавления данных"
+              class="profile__add-image"
             >
           </button>
         </section>
         <section class="gallery">
-          <ul class="cards">
+          <ul class="gallery__cards">
             <li class="card">
               <img
                 src="./images/kirill-pershin-1088404-unsplash.jpeg"
@@ -58,15 +57,8 @@
               >
               <div class="card__content">
                 <h2 class="card__title">
-                  Карачаевск
-                  <button class="card__icon card__icon_active">
-                    <img
-                src="./images/heart.png"
-                alt="кнопка сердечко"
-                class="card__icon-image"
-              >
-                  </button>
-                </h2>
+                  Карачаевск</h2>
+                  <button type="button" class="card__icon"></button>    
               </div>
             </li>
             <li class="card">
@@ -76,16 +68,10 @@
                 class="card__image"
               >
               <div class="card__content">
-                <h2 class="card__title">
-                  Гора Эльбрус
-                  <button class="card__icon card__icon_active">
-                    <img
-                      src="./images/heart.png"
-                      alt="рисунок сердечка"
-                      class="card__icon-image"
-                    >
+                <h2 class="card__title">Гора Эльбрус</h2>
+                  
+                  <button type="button" class="card__icon">
                   </button>
-                </h2>
               </div>
             </li>
             <li class="card">
@@ -96,15 +82,11 @@
               >
               <div class="card__content">
                 <h2 class="card__title">
-                  Домбай
-                  <button class="card__icon card__icon_active">
-                    <img
-                      src="./images/heart.png"
-                      alt="рисунок сердечка"
-                      class="card__icon-image"
-                    >
+                  Домбай</h2>
+                  <button type="button" class="card__icon">
+              
                   </button>
-                </h2>
+                
               </div>
             </li>
             <li class="card">
@@ -115,15 +97,11 @@
               >
               <div class="card__content">
                 <h2 class="card__title">
-                  Гора Эльбрус
-                  <button class="card__icon card__icon_active">
-                    <img
-                      src="./images/heart.png"
-                      alt="рисунок сердечка"
-                      class="card__icon-image"
-                    >
+                  Гора Эльбрус</h2>
+                  <button type="button" class="card__icon">
+                    
                   </button>
-                </h2>
+                
               </div>
             </li>
             <li class="card">
@@ -134,15 +112,11 @@
               >
               <div class="card__content">
                 <h2 class="card__title">
-                  Домбай
-                  <button class="card__icon card__icon_active">
-                    <img
-                      src="./images/heart.png"
-                      alt="рисунок сердечка"
-                      class="card__icon-image"
-                    >
+                  Домбай</h2>
+                  <button type="button" class="card__icon">
+                    
                   </button>
-                </h2>
+                
               </div>
             </li>
             <li class="card">
@@ -153,16 +127,10 @@
               >
               <div class="card__content">
                 <h2 class="card__title">
-                  Карачаево-Ч...
-                  <button class="card__icon card__icon_active">
-                    <img
-                      src="./images/heart.png"
-                      alt="рисунок сердечка"
-                      class="card__icon-image"
-                      
-                    >
+                  Карачаево-Ч...</h2>
+                  <button type="button" class="card__icon">
+                
                   </button>
-                </h2>
               </div>
             </li>
           </ul>
@@ -174,19 +142,18 @@
     </div>
     <div class="popup">
       <div class="popup__container">
-       <img src="./images/Closepopup.png" alt="рисунок для закрытия" class="popup__close">
-       <div class="popup__text">
+       <img src="./images/Closepopup.svg" alt="рисунок для закрытия формы данных пользователя" class="popup__close">
          <h2 class="popup__title">Редактировать профиль</h2>
-         <form class="input">
-           <input type="text" placeholder="Имя" value="Жак-Ив Кусто" class="input__text input__text_name">
-           <input type="text" placeholder="О себе" value="Исследователь океана" class="input__text input__text_job">
-           <button class="popup__save">Сохранить</button>
+         <form class="form" name="forma">
+           <input type="text" placeholder="Имя" name="input-name" value="Жак-Ив Кусто" class="form__text form__text_type_name">
+           <input type="text" placeholder="О себе" name="input-about" value="Исследователь океана" class="form__text form__text_type_job">
+           <button type="submit" class="form__save">Сохранить</button>
        
           </form>
    
       </div>
     </div>
     </div>
-    <script src="script.js"></script>
+    <script src="./scripts/index.js"></script>
   </body>
 </html>

@@ -3,26 +3,31 @@
    padding-top: 40px;
    display: flex;
    align-items: center;
-   gap: 20px;
+   gap: 24px;
    margin: auto;
+   
 
 }
 
 
 @media (max-width: 900px) {
    .profile {
-     max-width: 90vw;
-     
+     max-width: 581px;
+     flex-direction: column;
+     gap: 22.25px;
+     padding-top: 38.25px;
    }
 }
 
 
-@media (max-width: 800px) {
+@media (max-width: 600px) {
    .profile {
-     flex-direction: column;
-     gap: 22.25px;
-     padding-top: 38.25px;
+     max-width: 282px;
      
    }
      
    }
+
+  
+   
+
