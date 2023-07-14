@@ -6,17 +6,23 @@
    font-weight: 400;
    line-height: normal;
    margin-top: 16px;
+   text-overflow: ellipsis; 
+   white-space: nowrap;
+   overflow: hidden;
+   max-width: 336px;
+   text-align: center;
   
 
 
 }
 
 
-@media (max-width: 470px) {
+@media (max-width: 600px) {
    .profile__job {
       font-size: 14px;
       text-align: center;
       margin-top: 14px;
+      max-width: 282px;
      
    }
 }

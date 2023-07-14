@@ -1,4 +1,4 @@
-.cards {
+.gallery__cards {
    max-width: 880px;
    margin: 0 auto;
    padding: 0;
@@ -10,16 +10,14 @@
 
 }
 
-@media (max-width: 880px) {
-   .cards {
+@media (max-width: 900px) {
+   .gallery__cards {
       max-width: 581px;
    }
 }
 
-@media (max-width: 580px) {
-   .cards {
-      gap: 20px;
-      width: 282px;   
+@media (max-width: 600px) {
+   .gallery__cards {
+      max-width: 282px;   
    }
 }
-
