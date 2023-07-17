@@ -1,14 +1,11 @@
 .form__text {
-   margin: 0;
-   line-height: 30px;
-   font-size: 14px;
-   font-weight: 400;
-   border: none;
-   border-bottom: 1px solid;
-   border-bottom-color: rgba(0, 0, 0, .2);
-   color: #000;
-   box-sizing: border-box;
-   } 
-
- 
-
+  margin: 0;
+  line-height: 30px;
+  font-size: 14px;
+  font-weight: 400;
+  border: none;
+  border-bottom: 1px solid;
+  border-bottom-color: rgba(0, 0, 0, 0.2);
+  color: #000;
+  box-sizing: border-box;
+}
