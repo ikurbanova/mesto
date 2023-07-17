@@ -7,15 +7,13 @@
    box-sizing: border-box;
 }
 
-
 @media (max-width: 470px) {
-   .logo__image {
-      width: 103.74px;
-      height: 24.4px;
-   }
+  .logo {
+    width: 103.74px;
+    height: 24.4px;
+  }
 }
 
-
 .logo:hover {
-   opacity: 0.6;
+  opacity: 0.6;
 }

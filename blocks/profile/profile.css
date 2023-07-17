@@ -3,7 +3,7 @@
   padding-top: 40px;
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: 30px;
   margin: auto;
 }
 
@@ -19,5 +19,6 @@
 @media (max-width: 600px) {
   .profile {
     max-width: 282px;
+    gap: 28px;
   }
 }
