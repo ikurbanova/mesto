@@ -11,21 +11,15 @@
    display: flex;
    box-sizing: border-box;
    border-radius: 2px;
-
-
 }
 
 .profile__add-button:hover {
    opacity: 0.6;
-
 }
 
 @media (max-width: 600px) {
    .profile__add-button {
-      margin-top: 13.75px;
-      width: 282px;
-   
-     
-     
+      margin-top: 4px;
+      width: 282px;  
    }
 }

@@ -1,18 +1,13 @@
 .profile__description {
- 
    display: flex;
    justify-content: space-between;
    flex-grow: 1;
-   flex-direction: column;
-   
+   flex-direction: column; 
 }
 
 
 @media (max-width: 800px) {
    .profile__description {
     justify-content: center;
-     
-
-     
    }
 }

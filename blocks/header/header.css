@@ -4,17 +4,12 @@
    padding-top: 45px;
    padding-bottom: 41px;
    box-sizing: border-box;
-   border-bottom: 1px solid rgba(84, 84, 84, .6);
-  
-  
-  
+   border-bottom: 1px solid rgba(84, 84, 84, .6); 
 }
 
 @media (max-width: 900px) {
    .header {
-     max-width: 581px;
-     
-     
+     max-width: 581px;  
    }
 }
 
@@ -28,7 +23,8 @@
    .header {
    padding-top: 28px;
    padding-bottom: 31.6px;
-   padding-left: 27px;
-   width: 100vw;
+   padding-left: 8px;
+
+ 
    }
 }

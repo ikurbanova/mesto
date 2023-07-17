@@ -1,12 +1,17 @@
 .profile__add-image {
    display: block;
    object-fit: cover;
-   width: 16px;
-   height: 16px;
-   margin: auto;
-   
-  
+   width: 22px;
+   height: 22px;
+   margin: auto; 
 }
 
 
 
+
+@media (max-width: 470px) {
+   .profile__add-image{
+     width: 16px;
+     height: 16px;
+   }
+}

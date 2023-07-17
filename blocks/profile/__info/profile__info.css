@@ -1,7 +1,8 @@
 .profile__info {
   display: flex;
   gap: 18px;
-  align-items: center;
+align-items: center;
+
 }
   
   
@@ -9,8 +10,6 @@
    .profile__info {
      margin: auto;
      gap: 10px;
-     
-
-     
+     padding-left: 28px;
    }
 } 

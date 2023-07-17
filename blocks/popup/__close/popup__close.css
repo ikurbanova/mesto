@@ -4,7 +4,12 @@
    height: 32px;
    top: -40px;
    right: -40px;
+   background: none;
+   box-shadow: none;
    cursor: pointer;
+   margin: 0;
+   padding: 0;
+  border: none;
 }
 
 .popup__close:hover {
@@ -17,9 +22,6 @@
       height: 20px;
       top: -36px;
       right: 0;
-      
-
-     
    }
 }
 

@@ -5,12 +5,11 @@
    font-style: normal;
    font-weight: 400;
    line-height: normal;
-   margin-top: 16px;
+   margin-top: 10px;
    text-overflow: ellipsis;
    white-space: nowrap;
    overflow: hidden;
    max-width: 336px;
-
 }
 
 
@@ -18,8 +17,7 @@
    .profile__job {
       font-size: 14px;
       text-align: center;
-      margin-top: 14px;
-      max-width: 282px;
-     
+      margin-top: 8px;
+      max-width: 282px;  
    }
 }
