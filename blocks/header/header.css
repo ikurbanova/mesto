@@ -7,22 +7,13 @@
   border-bottom: 1px solid rgba(84, 84, 84, 0.7);
 }
 
+
+
+
 @media (max-width: 900px) {
-  .header {
-    max-width: 581px;
-  }
-}
-
-@media (max-width: 600px) {
-  .header {
-    max-width: 282px;
-  }
-}
-
-@media (max-width: 320px) {
   .header {
     padding-top: 28px;
     padding-bottom: 31.6px;
-    padding-left: 8px;
+    padding-left: 27px;
   }
 }
