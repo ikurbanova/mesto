@@ -1,7 +1,6 @@
 .popup-card__text {
    position:absolute;
    margin: 0;
-   background-color: white;
    bottom: -22px;
    left: 0;
    width: 816px;
@@ -11,7 +10,6 @@
    line-height: normal;
    color:#FFF;
    background-color: transparent;
-
 }
 
 @media (max-width: 850px) {
