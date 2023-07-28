@@ -1,0 +1,17 @@
+.popup-card__container {
+  width: 816px;
+  background-color: transparent;
+  position: relative;
+  box-sizing: border-box;
+  margin: auto;
+}
+
+@media (max-width: 850px) {
+  .popup-card__container {
+    max-width: 75vw;
+   
+  }
+}
+
+
+

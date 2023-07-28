@@ -1,0 +1,22 @@
+.popup-card__text {
+   position:absolute;
+   margin: 0;
+   background-color: white;
+   bottom: -22px;
+   left: 0;
+   width: 816px;
+   font-size: 12px;
+   font-style: normal;
+   font-weight: 400;
+   line-height: normal;
+   color:#FFF;
+   background-color: transparent;
+
+}
+
+@media (max-width: 850px) {
+   .popup-card__text {
+     max-width: 75vw;
+    
+   }
+ }

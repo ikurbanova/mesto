@@ -49,90 +49,20 @@
         </section>
         <section class="gallery">
           <ul class="gallery__cards">
+           <template id="cards">
             <li class="card">
-              <img
-                src="./images/kirill-pershin-1088404-unsplash.jpeg"
-                alt="фото Карачаевска"
-                class="card__image"
-              >
+              <img class="card__image"
+                alt="фото">
+                <button type="button" class="card__remove"></button>
               <div class="card__content">
                 <h2 class="card__title">
-                  Карачаевск</h2>
+                  </h2>
                   <button type="button" class="card__icon"></button>    
               </div>
             </li>
-            <li class="card">
-              <img
-                src="./images/kirill-pershin-1404681-unsplash.jpeg"
-                alt="фото горы Эльбрус"
-                class="card__image"
-              >
-              <div class="card__content">
-                <h2 class="card__title">Гора Эльбрус</h2>
-                  
-                  <button type="button" class="card__icon">
-                  </button>
-              </div>
-            </li>
-            <li class="card">
-              <img
-                src="./images/kirill-pershin-1556355-unsplash.jpeg"
-                alt="фото Домбая"
-                class="card__image"
-              >
-              <div class="card__content">
-                <h2 class="card__title">
-                  Домбай
-                </h2>
-                <button type="button" class="card__icon"></button>
-              </div>
-            </li>
-            <li class="card">
-              <img
-                src="./images/kirill-pershin-1404681-unsplash.jpeg"
-                alt="фото горы Эльбрус"
-                class="card__image"
-              >
-              <div class="card__content">
-                <h2 class="card__title">
-                  Гора Эльбрус</h2>
-                  <button type="button" class="card__icon">
-                    
-                  </button>
-                
-              </div>
-            </li>
-            <li class="card">
-              <img
-                src="./images/kirill-pershin-1556355-unsplash.jpeg"
-                alt="фото Домбая"
-                class="card__image"
-              >
-              <div class="card__content">
-                <h2 class="card__title">
-                  Домбай</h2>
-                  <button type="button" class="card__icon">
-                    
-                  </button>
-                
-              </div>
-            </li>
-            <li class="card">
-              <img
-                src="./images/kirill-pershin-1088404-unsplash.jpeg"
-                alt="фото Карачаевска"
-                class="card__image"
-              >
-              <div class="card__content">
-                <h2 class="card__title">
-                  Карачаево-Ч...</h2>
-                  <button type="button" class="card__icon">
-                
-                  </button>
-              </div>
-            </li>
+            </template>
           </ul>
-        </section>
+      </section>
       </main>
       <footer class="footer">
         <p class="footer__text">© 2020 Mesto Russia</p>
@@ -148,9 +78,31 @@
            <input type="text" placeholder="Имя" name="input-name" value="Жак-Ив Кусто" class="form__text form__text_type_name">
            <input type="text" placeholder="О себе" name="input-about" value="Исследователь океана" class="form__text form__text_type_job">
            <button type="submit" class="form__save">Сохранить</button>
-       
           </form>
    
+      </div>
+    </div>
+    <div class="popup popup_newcard">
+      <div class="popup__container">
+        <button type="button" class="popup__close">
+            <img src="./images/Closepopup.svg" alt="рисунок для закрытия формы данных пользователя" class="popup__close-image">
+          </button>
+         <h2 class="popup__title">Новое место</h2>
+         <form class="form form_card" name="card">
+           <input type="text" placeholder="Название" name="input-name" value="" class="form__text form__text_type_name">
+           <input type="url" placeholder="Ссылка на картинку" name="input-about" value=""
+           class="form__text form__text_type_link">
+           <button type="submit" class="form__save">Сохранить</button>
+          </form>
+      </div>
+    </div>
+    <div class="popup-card">
+      <div class="popup-card__container">
+        <button type="button" class="popup-card__close">
+        <img src="./images/Closepopup.svg" alt="рисунок для закрытия фотографии" class="popup-card__close-image">
+          </button>
+         <img src="" alt="рисунок из карточки"  class="popup-card__image">
+         <p class="popup-card__text"></p>
       </div>
     </div>
     <script src="./scripts/index.js"></script>
