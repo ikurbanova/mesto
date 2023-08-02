@@ -54,7 +54,7 @@ const profileAddButton = document.querySelector('.profile__add-button');
 
 const newCardPopup = document.querySelector('.popup_type_card');
 
-const popupCardcloseButton = newCardPopup.querySelector(".popup__close");
+const popupCardCloseButton = newCardPopup.querySelector(".popup__close");
 
 const addNewCardPopup = function () {
   addPopup(newCardPopup);
@@ -66,7 +66,7 @@ const removeNewcardPopup = function () {
 
 profileAddButton.addEventListener('click', addNewCardPopup);
 
-popupCardcloseButton.addEventListener('click', removeNewcardPopup);
+popupCardCloseButton.addEventListener('click', removeNewcardPopup);
 
 //Добавление карточек
 
@@ -74,7 +74,7 @@ const template = document.querySelector('#cards').content;
 
 const gallery = document.querySelector('.gallery__cards');
 
-const iconClickHandler = function (event) {
+const clickIconHandler = function (event) {
   event.currentTarget.classList.toggle("card__icon_active");
 };
 
@@ -85,10 +85,14 @@ const removeClickHandler = function (event) {
 
 const openCardImg = function(event) {
   addPopupImg();
-  popupCardImage.src = event.currentTarget.src;
+
   const card = event.currentTarget.parentElement;
   const title = card.querySelector(".card__title");
+  
+  popupCardImage.src = event.currentTarget.src;
+  popupCardImage.alt = title.textContent;
   popupImgText.textContent = title.textContent;
+
 };
 
 initialCards.forEach(function (item) {
@@ -99,15 +103,15 @@ initialCards.forEach(function (item) {
 
 function addCard(name, link) {
   const cardElement = template.querySelector('.card').cloneNode(true);
-
-  cardElement.querySelector('.card__image').src = link;
+  const cardImageElement = cardElement.querySelector(".card__image");
+  cardImageElement.src = link;
+  cardImageElement.alt = name;
   cardElement.querySelector('.card__title').textContent = name;
   
   const buttonCardIcon = cardElement.querySelector(".card__icon");
-  buttonCardIcon.addEventListener('click', iconClickHandler); 
+  buttonCardIcon.addEventListener('click', clickIconHandler); 
   const buttonCardRemove = cardElement.querySelector(".card__remove");
   buttonCardRemove.addEventListener('click', removeClickHandler); 
-  const cardImageElement = cardElement.querySelector(".card__image");
   cardImageElement.addEventListener("click",openCardImg);
   return cardElement;
 };
