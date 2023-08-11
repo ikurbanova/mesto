@@ -38,6 +38,12 @@
 @import url(../blocks/popup/__image-card/popup__image-card.css);
 @import url(../blocks/popup/__container-img/popup__container-img.css);
 @import url(../blocks/popup/__text/popup__text.css);
+@import url(../blocks/error/error.css);
+@import url(../blocks/form/__save/_invalid/form__save_invalid.css);
+@import url(../blocks/form/__input/_type/_error/form__input_type_error.css);
+@import url(../blocks/input-wrapper/input-wrapper.css);
+@import url(../blocks/form/__input/form__input.css);
+
 
 
 /**{outline: 1px solid yellow};*/

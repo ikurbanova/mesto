@@ -74,9 +74,15 @@
             <img src="./images/Closepopup.svg" alt="рисунок для закрытия формы данных пользователя" class="popup__close-image">
           </button>
          <h2 class="popup__title">Редактировать профиль</h2>
-         <form class="form" name="profile">
-           <input type="text" placeholder="Имя" name="input-name" value="Жак-Ив Кусто" class="form__text form__text_type_name">
-           <input type="text" placeholder="О себе" name="input-about" value="Исследователь океана" class="form__text form__text_type_job">
+         <form class="form" name="profile" novalidate>
+          <div class="input-wrapper">
+           <input required minlength="2" maxlength="40" type="text" id="input-name" placeholder="Имя" name="input-name" value="Жак-Ив Кусто" class="form__input form__text form__text_type_name">
+           <span id="input-name-error" class="error"></span>
+          </div>
+          <div class="input-wrapper">
+           <input required minlength="2" maxlength="200" type="text" id="input-about" placeholder="О себе" name="input-about" value="Исследователь океана" class="form__input form__text form__text_type_job">
+           <span id="input-about-error" class="error"></span>
+           </div>
            <button type="submit" class="form__save">Сохранить</button>
           </form>
    
@@ -88,10 +94,16 @@
             <img src="./images/Closepopup.svg" alt="рисунок для закрытия формы данных пользователя" class="popup__close-image">
           </button>
          <h2 class="popup__title">Новое место</h2>
-         <form class="form" name="card">
-           <input type="text" placeholder="Название" name="input-name" value="" class="form__text form__text_type_name">
-           <input type="url" placeholder="Ссылка на картинку" name="input-about" value=""
-           class="form__text form__text_type_link">
+         <form class="form" name="card" novalidate>
+          <div class="input-wrapper">
+            <input required minlength="2" maxlength="30" type="text" id = "input-card" placeholder="Название" name="input-card" value="" class="form__input form__text form__text_type_name">
+            <span id="input-card-error" class="error"></span>
+          </div>
+          <div class="input-wrapper">
+           <input required type="url" id ="input-url" placeholder="Ссылка на картинку" name="input-url" value=""
+           class="form__input form__text form__text_type_link">
+           <span id="input-url-error" class="error"></span>
+        </div>
            <button type="submit" class="form__save">Сохранить</button>
           </form>
       </div>
@@ -107,5 +119,6 @@
     </div>
     <script src="./scripts/card.js"></script>
     <script src="./scripts/index.js"></script>
+    <script src="./validate.js"></script>
   </body>
 </html>
