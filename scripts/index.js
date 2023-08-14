@@ -1,3 +1,12 @@
+const config = {
+  formSelector: '.form',
+  inputSelector: '.form__input',
+  submitButtonSelector: '.form__save',
+  inactiveButtonClass: 'form__save_invalid',
+  inputErrorClass: 'form__input_type_error',
+  errorClass: 'error'
+}
+
 const profileEditButton = document.querySelector('.profile__edit-button');
 
 const profilePopup = document.querySelector('.popup_type_profile');
@@ -16,23 +25,25 @@ const profileName = profile.querySelector('.profile__name');
 
 const profileJob = profile.querySelector('.profile__job');
 
-const addPopup = function (item) {
+const openPopup = function (item) {
   item.classList.add('popup_opened');
+  body.addEventListener('keydown', addEscListener);
 };
 
-const removePopup = function (item) {
-  console.log(item);
+const closePopup = function (item) {
   item.classList.remove('popup_opened');
+  body.removeEventListener ("keydown", addEscListener);
+
 };
 
 const addPopupProfile = function () {
-  addPopup(profilePopup);
+  openPopup(profilePopup);
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
 };
 
 const removePopupProfile = function () {
-  removePopup(profilePopup);
+  closePopup(profilePopup);
 };
 
 profileEditButton.addEventListener('click', addPopupProfile);
@@ -57,16 +68,16 @@ const newCardPopup = document.querySelector('.popup_type_card');
 const popupCardCloseButton = newCardPopup.querySelector('.popup__close');
 
 const addNewCardPopup = function () {
-  addPopup(newCardPopup);
+  openPopup(newCardPopup);
 };
 
-const removeNewcardPopup = function () {
-  removePopup(newCardPopup);
+const removeNewCardPopup = function () {
+  closePopup(newCardPopup);
 };
 
 profileAddButton.addEventListener('click', addNewCardPopup);
 
-popupCardCloseButton.addEventListener('click', removeNewcardPopup);
+popupCardCloseButton.addEventListener('click', removeNewCardPopup);
 
 //Добавление карточек
 
@@ -83,7 +94,7 @@ const removeClickHandler = function (event) {
   cardItem.remove();
 };
 
-const openCardImg = function (event) {
+const addCardImg = function (event) {
   addPopupImg();
 
   const card = event.currentTarget.parentElement;
@@ -95,10 +106,10 @@ const openCardImg = function (event) {
 };
 
 initialCards.forEach(function (item) {
-  gallery.append(addCard(item.name, item.link));
+  gallery.append(createCard(item.name, item.link));
 });
 
-function addCard(name, link) {
+function createCard(name, link) {
   const cardElement = template.querySelector('.card').cloneNode(true);
   const cardImageElement = cardElement.querySelector('.card__image');
   cardImageElement.src = link;
@@ -109,7 +120,7 @@ function addCard(name, link) {
   buttonCardIcon.addEventListener('click', clickIconHandler);
   const buttonCardRemove = cardElement.querySelector('.card__remove');
   buttonCardRemove.addEventListener('click', removeClickHandler);
-  cardImageElement.addEventListener('click', openCardImg);
+  cardImageElement.addEventListener('click', addCardImg);
   return cardElement;
 }
 
@@ -119,9 +130,12 @@ const linkCardInput = newCardPopup.querySelector('.form__text_type_link');
 
 function handleCardFormSubmit(evt) {
   evt.preventDefault();
-  gallery.prepend(addCard(nameCardInput.value, linkCardInput.value));
-  removeNewcardPopup();
+  gallery.prepend(createCard(nameCardInput.value, linkCardInput.value));
+  removeNewCardPopup();
   formCardElement.reset();
+
+  const buttonElement = formCardElement.querySelector(config.submitButtonSelector);
+  disableButton(buttonElement,config);
 }
 
 const formCardElement = newCardPopup.querySelector('.form');
@@ -138,11 +152,11 @@ const popupCardImage = popupImg.querySelector('.popup__image-card');
 const popupImgText = popupImg.querySelector('.popup__text');
 
 const addPopupImg = function () {
-  addPopup(popupImg);
+  openPopup(popupImg);
 };
 
 const removePopupImg = function () {
-  removePopup(popupImg);
+  closePopup(popupImg);
 };
 
 popupCloseButtonImg.addEventListener('click', removePopupImg);
@@ -151,16 +165,16 @@ popupCloseButtonImg.addEventListener('click', removePopupImg);
 
 //Закрытие попапа кликом на оверлей
 
-const removePopupByClickingOverlay = function (event) {
+const closePopupByClickingOverlay = function (event) {
   if (event.target === event.currentTarget) {
-    removePopup(event.target);
+    closePopup(event.target);
   }
 };
 
 const setPopupEventListeners = () => {
   const popupList = document.querySelectorAll('.popup');
   popupList.forEach((item) => {
-    item.addEventListener('click', removePopupByClickingOverlay);
+    item.addEventListener('click', closePopupByClickingOverlay);
   });
 };
 
@@ -170,10 +184,14 @@ setPopupEventListeners();
 
 const body = document.querySelector('.body');
 
-body.addEventListener('keydown', function (evt) {
-  console.log(evt.key);
+function addEscListener (evt) {
   if (evt.key === 'Escape') {
-    const p = document.querySelector('.popup_opened');
-    if (p) removePopup(p);
+    const openedPopup = document.querySelector('.popup_opened');
+    if (openedPopup) closePopup(openedPopup);
   }
-});
+};
+
+enableValidation(config); 
+
+
+
