@@ -44,14 +44,13 @@ export class FormValidator {
     errorElement.textContent = '';
   };
 
-
- _checkInputValidity = (inputElement) => {
-  if (!inputElement.validity.valid) {
-    this._showInputError(inputElement);
-  } else {
-    this._hideInputError(inputElement);
-  }
-};
+  _checkInputValidity = (inputElement) => {
+    if (!inputElement.validity.valid) {
+      this._showInputError(inputElement);
+    } else {
+      this._hideInputError(inputElement);
+    }
+  };
 
   _setEventListeners() {
     const inputList = Array.from(
@@ -69,7 +68,6 @@ export class FormValidator {
     });
   }
   enableValidation = () => {
-      this._setEventListeners();
-
+    this._setEventListeners();
   };
 }

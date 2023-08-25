@@ -1,6 +1,6 @@
-import { initialCards, Card} from "./card.js";
+import { initialCards, Card } from './Card.js';
 
-import {FormValidator} from "./validate.js";
+import { FormValidator } from './FormValidator.js';
 
 const config = {
   formSelector: '.form',
@@ -70,7 +70,6 @@ function handleProfileFormSubmit(evt) {
 
 profileForm.addEventListener('submit', handleProfileFormSubmit);
 
-
 const profileAddButton = document.querySelector('.profile__add-button');
 
 const newCardPopup = document.querySelector('.popup_type_card');
@@ -78,6 +77,7 @@ const newCardPopup = document.querySelector('.popup_type_card');
 const popupCardCloseButton = newCardPopup.querySelector('.popup__close');
 
 //открытие и закрытие попапа newCardPopup
+
 const addNewCardPopup = function () {
   openPopup(newCardPopup);
 };
@@ -97,7 +97,6 @@ const gallery = document.querySelector('.gallery__cards');
 
 initialCards.forEach(function (item) {
   gallery.append(createCard(item));
-  
 });
 
 function createCard(item) {
@@ -111,13 +110,16 @@ const linkCardInput = newCardPopup.querySelector('.form__text_type_link');
 
 function handleCardFormSubmit(evt) {
   evt.preventDefault();
-  gallery.prepend(createCard({name: nameCardInput.value, link: linkCardInput.value}));
+  gallery.prepend(
+    createCard({ name: nameCardInput.value, link: linkCardInput.value })
+  );
   removeNewCardPopup();
   formCardElement.reset();
-  const buttonElement = formCardElement.querySelector(config.submitButtonSelector);
+  const buttonElement = formCardElement.querySelector(
+    config.submitButtonSelector
+  );
   buttonElement.setAttribute('disabled', true);
   buttonElement.classList.add(config.inactiveButtonClass);
-
 }
 //слушатель
 const formCardElement = newCardPopup.querySelector('.form');
@@ -136,7 +138,6 @@ const setPopupEventListeners = () => {
   popupList.forEach((item) => {
     item.addEventListener('click', closePopupByClickingOverlay);
   });
-
 };
 
 setPopupEventListeners();
@@ -155,4 +156,4 @@ const formList = Array.from(document.querySelectorAll(config.formSelector));
 formList.forEach((formElement) => {
   const validator = new FormValidator(config, formElement);
   validator.enableValidation();
-})
+});
