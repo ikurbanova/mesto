@@ -53,11 +53,6 @@ export class FormValidator {
     }
   };
 
-  resetValidation() {
-    this.__setSubmitButtonState();
-    
-  }
-
   _setEventListeners() {
     const inputList = Array.from(
       this._formElement.querySelectorAll(this._config.inputSelector)
@@ -73,6 +68,14 @@ export class FormValidator {
       });
     });
   }
+  resetValidation() {
+    this.__setSubmitButtonState();
+    this._inputList.forEach((inputElement)=> {
+      this._hideInputError(inputElement);
+    }); 
+   
+  }
+
   enableValidation = () => {
     this._setEventListeners();
   };

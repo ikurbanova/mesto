@@ -57,6 +57,7 @@ const addPopupProfile = function () {
   openPopup(profilePopup);
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
+  profileValidator.resetValidation();
 };
 
 const removePopupProfile = function () {
@@ -185,8 +186,10 @@ function addEscListener(evt) {
 
 const formList = Array.from(document.querySelectorAll(config.formSelector));
 
-formList.forEach((formElement) => {
-  const validator = new FormValidator(config, formElement);
-  validator.enableValidation();
+const profileValidator = new FormValidator(config, formElement);
+profileValidator.enableValidation();
+
+const cardValidator = new FormValidator(config, formElement);
+cardValidator.enableValidation();
+
   
-});
