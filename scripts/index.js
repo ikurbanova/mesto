@@ -31,6 +31,14 @@ const profileJob = profile.querySelector('.profile__job');
 
 const body = document.querySelector('.body');
 
+const popupImg = document.querySelector('.popup_type_img');
+
+const cardImage = document.querySelector('.card__image');
+
+const popupCardImage = popupImg.querySelector('.popup__image-card');
+
+const popupImgText = popupImg.querySelector('.popup__text');
+
 //открытие  попапа
 const openPopup = function (item) {
   item.classList.add('popup_opened');
@@ -124,6 +132,15 @@ function handleCardFormSubmit(evt) {
 //слушатель
 const formCardElement = newCardPopup.querySelector('.form');
 formCardElement.addEventListener('submit', handleCardFormSubmit);
+
+//открытие и закрытие попапа popupImage
+
+function handleCardClick (name, link) {
+  popupCardImage.src = link;
+  popupImgText.textContent = name;
+  popupCardImage.alt = name;
+  openPopup(popupImg);
+}
 
 //Закрытие попапа кликом на оверлей
 

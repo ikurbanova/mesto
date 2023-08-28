@@ -27,10 +27,11 @@ export const initialCards = [
 
 export class Card {
   static template = document.querySelector('#cards').content;
-  constructor(data, templateSelector) {
+  constructor(data, templateSelector, handleCardClick) {
     this._name = data.name;
     this._link = data.link;
     this._templateSelector = templateSelector;
+    this._handleCardClick = handleCardClick;
   }
 
   _getTemplate() {
@@ -46,19 +47,6 @@ export class Card {
     this._cardItem.remove();
   }
 
-  _addEscListener = (evt) => {
-    if (evt.key === 'Escape') {
-      const openedPopup = document.querySelector('.popup_opened');
-      if (openedPopup) this._handleClosePopup();
-    }
-  };
-
-  _handleOpenPopup() {
-    this._popupCardImage.src = this._link;
-    this._popupImgText.textContent = this._name;
-    this._popupImg.classList.add('popup_opened');
-    document.addEventListener('keydown', this._addEscListener);
-  }
 
   _handleClosePopup() {
     this._popupCardImage.src = '';
@@ -73,7 +61,7 @@ export class Card {
 
   _setEventListeners() {
     this._cardImage.addEventListener('click', () => {
-      this._handleOpenPopup();
+      this._handleCardClick(this._name, this._link);
     });
 
     this._popupCloseButtonImg.addEventListener('click', () => {
@@ -91,7 +79,6 @@ export class Card {
 
   generateCard() {
     this._element = this._getTemplate();
-
     this._popupImg = document.querySelector('.popup_type_img');
     this._cardImage = this._element.querySelector('.card__image');
     this._buttonCardIcon = this._element.querySelector('.card__icon');
