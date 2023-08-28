@@ -188,4 +188,5 @@ const formList = Array.from(document.querySelectorAll(config.formSelector));
 formList.forEach((formElement) => {
   const validator = new FormValidator(config, formElement);
   validator.enableValidation();
+  
 });

@@ -1,4 +1,5 @@
 export class FormValidator {
+
   constructor(config, formElement) {
     this._config = config;
     this._formElement = formElement;
@@ -51,6 +52,11 @@ export class FormValidator {
       this._hideInputError(inputElement);
     }
   };
+
+  resetValidation() {
+    this.__setSubmitButtonState();
+    
+  }
 
   _setEventListeners() {
     const inputList = Array.from(
