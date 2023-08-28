@@ -1,5 +1,7 @@
 .gallery {
   padding-top: 47.25px;
+  width: 100vw;
+  height: 100vh;
 }
 
 @media (max-width: 320px) {

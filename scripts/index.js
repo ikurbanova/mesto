@@ -108,7 +108,7 @@ initialCards.forEach(function (item) {
 });
 
 function createCard(item) {
-  const card = new Card(item, 'template');
+  const card = new Card(item, 'template', handleCardClick, handleClosePopup);
   const cardElement = card.generateCard();
   return cardElement;
 }
@@ -140,6 +140,13 @@ function handleCardClick (name, link) {
   popupImgText.textContent = name;
   popupCardImage.alt = name;
   openPopup(popupImg);
+}
+
+function handleClosePopup() {
+  popupCardImage.src = '';
+  popupImgText.textContent = '';
+  popupCardImage.alt = "";
+  closePopup(popupImg);
 }
 
 //Закрытие попапа кликом на оверлей

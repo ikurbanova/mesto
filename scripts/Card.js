@@ -27,11 +27,12 @@ export const initialCards = [
 
 export class Card {
   static template = document.querySelector('#cards').content;
-  constructor(data, templateSelector, handleCardClick) {
+  constructor(data, templateSelector, handleCardClick, handleClosePopup) {
     this._name = data.name;
     this._link = data.link;
     this._templateSelector = templateSelector;
     this._handleCardClick = handleCardClick;
+    this._handleClosePopup = handleClosePopup;
   }
 
   _getTemplate() {
@@ -48,13 +49,6 @@ export class Card {
   }
 
 
-  _handleClosePopup() {
-    this._popupCardImage.src = '';
-    this._popupImgText.textContent = '';
-    this._popupImg.classList.remove('popup_opened');
-    document.removeEventListener('keydown', this._addEscListener);
-  }
-
   _clickIconHandler() {
     this._buttonCardIcon.classList.toggle('card__icon_active');
   }
@@ -65,7 +59,7 @@ export class Card {
     });
 
     this._popupCloseButtonImg.addEventListener('click', () => {
-      this._handleClosePopup();
+      this._handleClosePopup(this._name, this._link);
     });
 
     this._buttonCardIcon.addEventListener('click', () => {
@@ -88,6 +82,7 @@ export class Card {
     this._popupImgText = this._popupImg.querySelector('.popup__text');
     this._setEventListeners();
     this._cardImage.src = this._link;
+    this._cardImage.alt = this._name;
     this._element.querySelector('.card__title').textContent = this._name;
     return this._element;
   }
