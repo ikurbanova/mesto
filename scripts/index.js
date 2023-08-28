@@ -39,6 +39,8 @@ const popupCardImage = popupImg.querySelector('.popup__image-card');
 
 const popupImgText = popupImg.querySelector('.popup__text');
 
+const popupCloseButtonImg = popupImg.querySelector('.popup__close');
+
 //открытие  попапа
 const openPopup = function (item) {
   item.classList.add('popup_opened');
@@ -108,7 +110,7 @@ initialCards.forEach(function (item) {
 });
 
 function createCard(item) {
-  const card = new Card(item, 'template', handleCardClick, handleClosePopup);
+  const card = new Card(item, 'template', handleCardClick);
   const cardElement = card.generateCard();
   return cardElement;
 }
@@ -142,12 +144,18 @@ function handleCardClick (name, link) {
   openPopup(popupImg);
 }
 
-function handleClosePopup() {
-  popupCardImage.src = '';
-  popupImgText.textContent = '';
-  popupCardImage.alt = "";
+const removePopupImg = function () {
   closePopup(popupImg);
-}
+};
+
+popupCloseButtonImg.addEventListener('click', removePopupImg);
+
+//function handleClosePopup() {
+  //popupCardImage.src = '';
+ // popupImgText.textContent = '';
+  //popupCardImage.alt = "";
+  //closePopup(popupImg);
+//}
 
 //Закрытие попапа кликом на оверлей
 
