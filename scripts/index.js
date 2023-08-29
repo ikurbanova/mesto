@@ -87,9 +87,13 @@ const newCardPopup = document.querySelector('.popup_type_card');
 
 const popupCardCloseButton = newCardPopup.querySelector('.popup__close');
 
+const formCardElement = newCardPopup.querySelector('.form');
+
 //открытие и закрытие попапа newCardPopup
 
 const addNewCardPopup = function () {
+  cardValidator.resetValidation();
+  formCardElement.reset();
   openPopup(newCardPopup);
 };
 
@@ -126,19 +130,13 @@ function handleCardFormSubmit(evt) {
   );
   removeNewCardPopup();
   formCardElement.reset();
-  const buttonElement = formCardElement.querySelector(
-    config.submitButtonSelector
-  );
-  buttonElement.setAttribute('disabled', true);
-  buttonElement.classList.add(config.inactiveButtonClass);
 }
 //слушатель
-const formCardElement = newCardPopup.querySelector('.form');
 formCardElement.addEventListener('submit', handleCardFormSubmit);
 
 //открытие и закрытие попапа popupImage
 
-function handleCardClick (name, link) {
+function handleCardClick(name, link) {
   popupCardImage.src = link;
   popupImgText.textContent = name;
   popupCardImage.alt = name;
@@ -150,13 +148,6 @@ const removePopupImg = function () {
 };
 
 popupCloseButtonImg.addEventListener('click', removePopupImg);
-
-//function handleClosePopup() {
-  //popupCardImage.src = '';
- // popupImgText.textContent = '';
-  //popupCardImage.alt = "";
-  //closePopup(popupImg);
-//}
 
 //Закрытие попапа кликом на оверлей
 
@@ -186,10 +177,8 @@ function addEscListener(evt) {
 
 const formList = Array.from(document.querySelectorAll(config.formSelector));
 
-const profileValidator = new FormValidator(config, formElement);
+const profileValidator = new FormValidator(config, formList[0]);
 profileValidator.enableValidation();
 
-const cardValidator = new FormValidator(config, formElement);
+const cardValidator = new FormValidator(config, formList[1]);
 cardValidator.enableValidation();
-
-  

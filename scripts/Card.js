@@ -47,7 +47,6 @@ export class Card {
     this._cardItem.remove();
   }
 
-
   _clickIconHandler() {
     this._buttonCardIcon.classList.toggle('card__icon_active');
   }
@@ -56,10 +55,6 @@ export class Card {
     this._cardImage.addEventListener('click', () => {
       this._handleCardClick(this._name, this._link);
     });
-
-    //this._popupCloseButtonImg.addEventListener('click', () => {
-     // this._handleClosePopup(this._name, this._link);
-    //});
 
     this._buttonCardIcon.addEventListener('click', () => {
       this._clickIconHandler();
@@ -76,8 +71,6 @@ export class Card {
     this._cardImage = this._element.querySelector('.card__image');
     this._buttonCardIcon = this._element.querySelector('.card__icon');
     this._cardRemove = this._element.querySelector('.card__remove');
-    this._popupCardImage = this._popupImg.querySelector('.popup__image-card');
-    this._popupImgText = this._popupImg.querySelector('.popup__text');
     this._setEventListeners();
     this._cardImage.src = this._link;
     this._cardImage.alt = this._name;
