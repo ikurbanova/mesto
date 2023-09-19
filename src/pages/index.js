@@ -7,7 +7,7 @@ import { UserInfo } from '../components/UserInfo.js';
 import { initialCards } from '../utils/constants.js';
 import { config, profileEditButton } from '../utils/constants.js';
 import { nameInput, jobInput, profileAddButton} from '../utils/constants.js';
-import "../pages/index.css";
+import "./index.css";
 const profilePopup = new PopupWithForm(
   '.popup_type_profile',
   handleProfileFormSubmit
