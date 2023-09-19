@@ -16,21 +16,21 @@ export class FormValidator {
     });
   };
 
-  _disableButton = (item) => {
-    item.setAttribute('disabled', true);
-    item.classList.add(this._config.inactiveButtonClass);
+  _disableButton = () => {
+    this._buttonElement.setAttribute('disabled', true);
+    this._buttonElement.classList.add(this._config.inactiveButtonClass);
   };
 
-  _enableButton = (item) => {
-    item.removeAttribute('disabled');
-    item.classList.remove(this._config.inactiveButtonClass);
+  _enableButton = () => {
+    this._buttonElement.removeAttribute('disabled');
+    this._buttonElement.classList.remove(this._config.inactiveButtonClass);
   };
 
   _setSubmitButtonState = () => {
     if (this._hasInvalidInput(this._inputList)) {
-      this._disableButton(this._buttonElement);
+      this._disableButton();
     } else {
-      this._enableButton(this._buttonElement);
+      this._enableButton();
     }
   };
 

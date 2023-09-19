@@ -1,17 +1,17 @@
 export class UserInfo {
   constructor(selectorName, selectorAbout) {
-    this._selectorName = document.querySelector(selectorName);
-    this._selectorAbout = document.querySelector(selectorAbout);
+    this._nameElement = document.querySelector(selectorName);
+    this._aboutElement = document.querySelector(selectorAbout);
   }
 
   getUserInfo() {
-    return  { name: this._selectorName.textContent, about: this._selectorAbout.textContent};
+    return  { name: this._nameElement.textContent, about: this._aboutElement.textContent};
     
   }
 
   setUserInfo(name, about) {
-   this._selectorName.textContent =name;
-   this._selectorAbout.textContent =about;
+   this._nameElement.textContent =name;
+   this._aboutElement.textContent =about;
 
   }
 }

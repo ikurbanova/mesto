@@ -14,9 +14,11 @@ export class Section {
       );
    }
 
-   addItem(element, place) {
-      if (place === 'start') this._container.prepend(element);
-      if (place === 'end') this._container.append(element);
-     
+   prependItem(element) {
+      this._container.prepend(element);
+   }
+
+   appendItem(element) {
+      this._container.append(element);
    }
 }
