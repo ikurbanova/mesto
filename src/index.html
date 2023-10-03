@@ -49,15 +49,19 @@
         <section class="gallery">
           <ul class="gallery__cards">
            <template id="cards">
-            <li class="card">
+            <li class="card" id="">
               <img src="#" class="card__image"
                 alt="фото">
                 <button type="button" class="card__remove"></button>
               <div class="card__content">
                 <h2 class="card__title">
                   </h2>
-                  <button type="button" class="card__icon"></button>    
-              </div>
+                  <div class="card__text">
+                  <button type="button" class="card__icon"></button>  
+                  <div class="card__likes"></div> 
+                  </div>
+                </div>
+               
             </li>
             </template>
           </ul>
@@ -122,6 +126,19 @@
           </button>
          <img src="#" alt="рисунок из карточки"  class="popup__image-card">
          <p class="popup__text"></p>
+      </div>
+    </div>
+    <div class="popup popup_type_confirm">
+      <div class="popup__container">
+        <button type="button" class="popup__close">
+            <img src="<%=require('./images/Closepopup.svg')%>" alt="рисунок для закрытия формы данных пользователя" class="popup__close-image">
+          </button>
+         <h2 class="popup__title-confirm">Вы уверены?</h2>
+         <form class="form" name="confirmation" novalidate>
+  
+           <button type="submit" class="form__save form__save_confirm">Да</button>
+          </form>
+   
       </div>
     </div>
     <script  type="module" src="./src/pages/index.js"></script>

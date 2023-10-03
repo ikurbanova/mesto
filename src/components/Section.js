@@ -5,7 +5,6 @@ export class Section {
       this._renderedItems = data;
       this._renderer = renderer;
       this._container = document.querySelector(selector);
-      
    }
    renderItems() {
       this._renderedItems.forEach((item)=> {

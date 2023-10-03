@@ -1,0 +1,28 @@
+.form__save_confirm {
+   border-radius: 2px;
+   border: none;
+   background-color: #000;
+   width: 100%;
+   text-align: center;
+   color: #fff;
+   font-size: 18px;
+   font-weight: 400;
+   height: 50px;
+   box-shadow: none;
+   cursor: pointer;
+   box-sizing: border-box;
+   margin: 0;
+ }
+ 
+ .form__save_confirm:hover {
+   opacity: 0.8;
+ }
+ 
+ @media (max-width: 320px) {
+   .form__save_confirm {
+     margin-top: 24px;
+     font-size: 14px;
+     height: 46px;
+   }
+ }
+ 

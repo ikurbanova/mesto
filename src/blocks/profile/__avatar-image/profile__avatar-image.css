@@ -5,3 +5,10 @@
   width: 120px;
   height: 120px;
 }
+
+.profile__avatar-image:hover {
+  cursor: pointer;
+  background-image: url(../../../images/editprofileuser.png);
+
+}
+
