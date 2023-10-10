@@ -186,7 +186,7 @@ function openAvatarPopup() {
 buttonAvatar.addEventListener('click', openAvatarPopup);
 
 function handleAvatarFormSubmit(values) {
-  api.updateAvatar(values['input-url']).then((data) => {
+  api.updateAvatar(values['input-url-avatar']).then((data) => {
     this._changeButtonText('Сохранить');
     userInfo.setUserInfo(data.name, data.about, data.avatar);
     avatarPopup.close();
