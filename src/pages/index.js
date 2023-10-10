@@ -9,9 +9,9 @@ import { validationConfig, profileEditButton } from '../utils/constants.js';
 import { nameInput, jobInput, profileAddButton } from '../utils/constants.js';
 import './index.css';
 import { Api } from '../components/Api.js';
-
+import { buttonAvatar, avatarUpdate } from '../utils/constants.js';
 let userId;
-let cardId;
+
 const userInfo = new UserInfo(
   '.profile__name',
   '.profile__job',
@@ -27,25 +27,31 @@ const apiOptions = {
 };
 
 function createCard(item) {
-  const openPopupWithCard = (card) => {
+  const openPopupWithCard = () => {
     openConfirmPopup(card);
+  };
+
+  const handleLikeIconClick = (id) => {
+    if (!card.hasMyLike()) {
+      api.saveLike(id).then((data) => card.refreshLike(data.likes));
+    } else {
+      api.deleteLike(id).then((data) => card.refreshLike(data.likes));
+    }
   };
   const card = new Card(
     item,
     'template',
     handleCardClick,
-    api.saveLike.bind(api)
+    handleLikeIconClick,
+    userId
   );
   let hasRemoveButton = false;
+
   if (!item.owner || item.owner['_id'] === userId) {
     hasRemoveButton = true;
   }
-  card.setDeleteConfirmHandler(
-    () => openPopupWithCard(card)
-  );
+  card.setDeleteConfirmHandler(() => openPopupWithCard(card));
   const cardElement = card.generateCard(hasRemoveButton);
-
-
   return cardElement;
 }
 
@@ -84,8 +90,8 @@ const confirmPopup = new PopupWithConfirmation(
 confirmPopup.setEventListeners();
 
 const openConfirmPopup = function (card) {
-  confirmPopup.setPayload(card)
- 
+  confirmPopup.setPayload(card);
+
   confirmPopup.open();
 };
 
@@ -94,7 +100,6 @@ function handleConfirmFormSubmit(card) {
     card.removeCard();
     confirmPopup.close();
   });
-
 }
 const imagePopup = new PopupWithImage('.popup_type_img');
 
@@ -113,21 +118,22 @@ cardValidator.enableValidation();
 //открытие и закрытие попапа profilePopup
 const openProfilePopup = function () {
   profilePopup.open();
-  //const { name, about } = userInfo.getUserInfo();
   const userObj = userInfo.getUserInfo();
   nameInput.value = userObj.name;
   jobInput.value = userObj.about;
   profileValidator.resetValidation();
 };
 
-//слушатели
 profileEditButton.addEventListener('click', openProfilePopup);
 
 function handleProfileFormSubmit(values) {
-  api.editProfileData(values['input-name'], values['input-about']);
-  userInfo.setUserInfo(values['input-name'], values['input-about']);
-
-  profilePopup.close();
+  api
+    .editProfileData(values['input-name'], values['input-about'])
+    .then((data) => {
+      userInfo.setUserInfo(data.name, data.about);
+      this._changeButtonText('Сохранить');
+      profilePopup.close();
+    });
 }
 
 const cardPopup = new PopupWithForm('.popup_type_card', handleCardFormSubmit);
@@ -137,10 +143,10 @@ function handleCardFormSubmit(values) {
     .addNewCard({ name: values['input-card'], link: values['input-url'] })
     .then((data) => {
       cardSection.prependItem(createCard(data));
+      this._changeButtonText('Сохранить');
+      cardPopup.close();
     });
-  cardPopup.close();
 }
-//createCard({ name: values['input-card'], link: values['input-url'] })
 
 const openCardPopup = function () {
   cardValidator.resetValidation();
@@ -153,4 +159,37 @@ cardPopup.setEventListeners();
 
 function handleCardClick(name, link) {
   imagePopup.open(name, link);
+}
+
+function handleAvatarbutton() {
+  avatarUpdate.classList.toggle('profile__avatar-update_active');
+}
+
+buttonAvatar.addEventListener('mouseover', handleAvatarbutton);
+buttonAvatar.addEventListener('mouseout', handleAvatarbutton);
+const avatarValidator = new FormValidator(validationConfig, formList[3]);
+avatarValidator.enableValidation();
+
+const avatarPopup = new PopupWithForm(
+  '.popup_type_avatar',
+  handleAvatarFormSubmit
+);
+
+
+avatarPopup.setEventListeners();
+
+function openAvatarPopup() {
+  avatarValidator.resetValidation();
+  avatarPopup.open();
+}
+
+buttonAvatar.addEventListener('click', openAvatarPopup);
+
+function handleAvatarFormSubmit(values) {
+  api.updateAvatar(values['input-url']).then((data) => {
+    this._changeButtonText('Сохранить');
+    userInfo.setUserInfo(data.name, data.about, data.avatar);
+    avatarPopup.close();
+  });
+  
 }
