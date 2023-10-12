@@ -17,15 +17,14 @@ export class PopupWithForm extends Popup {
     return res;
   }
 
-  _changeButtonText(save) {
-    this._buttonForm.textContent =save;
+  changeButtonText(buttonText) {
+    this._buttonForm.textContent = buttonText;
   }
 
   setEventListeners() {
     super.setEventListeners();
     this._form.addEventListener('submit', (evt) => {
       evt.preventDefault();
-      this._changeButtonText('Сохранить...');
       this._submitCallback(this._getInputValues());
     });
   }

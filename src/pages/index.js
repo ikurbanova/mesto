@@ -9,7 +9,7 @@ import { validationConfig, profileEditButton } from '../utils/constants.js';
 import { nameInput, jobInput, profileAddButton } from '../utils/constants.js';
 import './index.css';
 import { Api } from '../components/Api.js';
-import { openPopupAvatar, avatarUpdate } from '../utils/constants.js';
+import {avatarUpdate} from '../utils/constants.js';
 let userId;
 
 const userInfo = new UserInfo(
@@ -27,9 +27,6 @@ const apiOptions = {
 };
 
 function createCard(item) {
-  const openPopupWithCard = () => {
-    openConfirmPopup(card);
-  };
 
   const handleLikeIconClick = (id) => {
     if (!card.isCurrentUserLiked()) {
@@ -49,24 +46,27 @@ function createCard(item) {
     'template',
     handleCardClick,
     handleLikeIconClick,
-    userId
+    userId,
+    () => openConfirmPopup(card)
   );
-  let hasRemoveButton = false;
+  const hasRemoveButton = item.owner['_id'] === userId; 
 
-  if (!item.owner || item.owner['_id'] === userId) {
-    hasRemoveButton = true;
-  }
-  card.setDeleteConfirmHandler(() => openPopupWithCard(card));
   const cardElement = card.generateCard(hasRemoveButton);
   return cardElement;
 }
 
 const api = new Api(apiOptions);
 let cardSection;
-api.getAllCards().then((data) => {
+Promise.all([
+  api.getProfile(),
+  api.getAllCards()
+])
+.then((dataArr) => {
+  userId = dataArr[0]['_id'];
+  userInfo.setUserInfo(dataArr[0]['name'], dataArr[0]['about'], dataArr[0]['avatar']);
   cardSection = new Section(
     {
-      data: data,
+      data: dataArr[1],
       renderer: (item) => {
         cardSection.appendItem(createCard(item));
       },
@@ -75,11 +75,10 @@ api.getAllCards().then((data) => {
   );
 
   cardSection.renderItems();
-});
+})
+.catch((err)=>{ 
+  console.log(err);
 
-api.getProfile().then((data) => {
-  userId = data['_id'];
-  userInfo.setUserInfo(data['name'], data['about'], data['avatar']);
 });
 
 
@@ -103,7 +102,7 @@ const openConfirmPopup = function (card) {
 };
 
 function handleConfirmFormSubmit(card) {
-  api.deleteCard(card._id).then(() => {
+  api.deleteCard(card.getId()).then(() => {
     card.removeCard();
     confirmPopup.close();
   })
@@ -137,31 +136,38 @@ const openProfilePopup = function () {
 profileEditButton.addEventListener('click', openProfilePopup);
 
 function handleProfileFormSubmit(values) {
+
+  profilePopup.changeButtonText('Сохранить...');
   api
     .editProfileData(values['input-name'], values['input-about'])
     .then((data) => {
       userInfo.setUserInfo(data.name, data.about, data.avatar);
-      this._changeButtonText('Сохранить');
-      profilePopup.close();
     })
     .catch((err) => {
       console.log(err);
-    });
+    })
+    .finally(()=> {
+      profilePopup.changeButtonText('Сохранить');
+      profilePopup.close();
+    })
 }
 
 const cardPopup = new PopupWithForm('.popup_type_card', handleCardFormSubmit);
 
 function handleCardFormSubmit(values) {
+  cardPopup.changeButtonText('Сохранить...');
   api
     .addNewCard({ name: values['input-card'], link: values['input-url'] })
     .then((data) => {
       cardSection.prependItem(createCard(data));
-      this._changeButtonText('Сохранить');
-      cardPopup.close();
     })
     .catch((err) => {
       console.log(err);
-    });
+    })
+    .finally(()=> {
+      cardPopup.changeButtonText('Сохранить');
+      cardPopup.close();
+    })
 }
 
 const openCardPopup = function () {
@@ -192,21 +198,20 @@ function openAvatarPopup() {
   avatarPopup.open();
 }
 
-openPopupAvatar.addEventListener('click', openAvatarPopup);
+avatarUpdate.addEventListener('click', openAvatarPopup);
 
 function handleAvatarFormSubmit(values) {
+  avatarPopup.changeButtonText('Сохранить...');
   api
     .updateAvatar(values['input-url-avatar'])
     .then((data) => {
-      //this._changeButtonText('Сохранить');
       userInfo.setUserInfo(data.name, data.about, data.avatar);
-      //avatarPopup.close();
     })
     .catch((err) => {
       console.log(err);
     })
     .finally(()=> {
-      this._changeButtonText('Сохранить');
+      avatarPopup.changeButtonText('Сохранить');
       avatarPopup.close();
     })
 

@@ -37,11 +37,11 @@ export class Api {
     .then((response) => checkResponse(response))
   }
 
-  addNewCard(name, link) {
+  addNewCard(card) {
     return fetch(this._url + '/cards', {
       method: 'POST',
       headers: this._headers,
-      body: JSON.stringify(name, link),
+      body: JSON.stringify(card),
     })
     .then((response) => checkResponse(response))
   }

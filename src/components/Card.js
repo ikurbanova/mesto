@@ -4,7 +4,8 @@ export class Card {
     templateSelector,
     handleCardClick,
     handleCardLike,
-    userId
+    userId,
+    handlePopupConfirm
   ) {
     this._name = data.name;
     this._link = data.link;
@@ -12,16 +13,13 @@ export class Card {
     this._handleCardClick = handleCardClick;
     this._likesArr = data.likes;
     this._id = data._id;
-    this._handleCardLike = handleCardLike;
+    this._cardLikeHandler = handleCardLike;
     this._userId = userId
-    
+    this._confirmPopupHandler = handlePopupConfirm;
    
 
   }
-  setDeleteConfirmHandler(callback) {
-  this._openConfirmPopup = callback;
-   
-}
+
   _getTemplate() {
     const cardElement = document
       .querySelector(this._templateSelector)
@@ -36,8 +34,7 @@ export class Card {
   }
 
   _handleLikeClick() {
-    //this._buttonLike.classList.toggle('card__icon_active');
-    this._handleCardLike(this._id)
+    this._cardLikeHandler(this._id)
   }
 
   refreshLike(arr) {
@@ -47,7 +44,7 @@ export class Card {
   }
 
   _openConfirmPopup() {
-    this._openConfirmPopup(this._id);
+    this._confirmPopupHandler(this._id);
   }
 
   _setEventListeners() {
@@ -71,10 +68,12 @@ export class Card {
 
     }
   
+  getId() {
+    return this._id;
+  }
 
   generateCard(hasRemoveButton) {
     this._element = this._getTemplate();
-    //this._element.id = this._id;
     this._cardImage = this._element.querySelector('.card__image');
     this._buttonLike = this._element.querySelector('.card__icon');
     this._cardLikes = this._element.querySelector('.card__likes');

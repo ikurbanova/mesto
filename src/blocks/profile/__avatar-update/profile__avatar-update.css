@@ -1,18 +1,45 @@
 .profile__avatar-update {
+   position: relative;
+   padding:0;
+   margin: 0;
+   height: 100%;
+   width: 100%;
+   background-color: transparent;
+   border: none;
+}
+
+
+.profile__avatar-update:before {
+   content: '';
    position: absolute;
    top:0;
    right: 0;
    left: 0;
    bottom:0;
-  background-color: transparent;
+   background-color: rgba(0,0,0,0.8);
    border: none;
+   opacity: 0;
 }
 
-.profile__avatar-update:hover {
+.profile__avatar-update:after {
+   content: '';
+   position: absolute;
+   top:0;
+   right: 0;
+   left: 0;
+   bottom:0;
    background-image: url(../../../images/editprofile.png);
-   background-color: rgba(0,0,0,0.8);
    background-repeat: no-repeat;
    background-position: center;
    border: none;
-   pointer-events: none;
+   opacity: 0;
+}
+
+
+
+
+.profile__avatar-update:hover:after,
+.profile__avatar-update:hover:before {
+  opacity: 1;
+  cursor: pointer;
 }
