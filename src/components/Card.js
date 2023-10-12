@@ -3,7 +3,7 @@ export class Card {
     data,
     templateSelector,
     handleCardClick,
-    saveLike,
+    handleCardLike,
     userId
   ) {
     this._name = data.name;
@@ -12,7 +12,7 @@ export class Card {
     this._handleCardClick = handleCardClick;
     this._likesArr = data.likes;
     this._id = data._id;
-    this._saveLike = saveLike;
+    this._handleCardLike = handleCardLike;
     this._userId = userId
     
    
@@ -36,13 +36,14 @@ export class Card {
   }
 
   _handleLikeClick() {
-    this._buttonLike.classList.toggle('card__icon_active');
-    this._saveLike(this._id)
+    //this._buttonLike.classList.toggle('card__icon_active');
+    this._handleCardLike(this._id)
   }
 
   refreshLike(arr) {
     this._likesArr = arr;
     this._cardLikes.textContent = this._likesArr.length;
+    this._buttonLike.classList.toggle('card__icon_active');
   }
 
   _openConfirmPopup() {
@@ -63,9 +64,9 @@ export class Card {
     });
   }
 
-  hasMyLike() {
+  isCurrentUserLiked() {
     return this._likesArr.find(item => {
-      return item['_id'] === this._userId
+      return item._id === this._userId
     })
 
     }
@@ -73,7 +74,7 @@ export class Card {
 
   generateCard(hasRemoveButton) {
     this._element = this._getTemplate();
-    this._element.id = this._id;
+    //this._element.id = this._id;
     this._cardImage = this._element.querySelector('.card__image');
     this._buttonLike = this._element.querySelector('.card__icon');
     this._cardLikes = this._element.querySelector('.card__likes');
@@ -82,11 +83,11 @@ export class Card {
     this._cardImage.src = this._link;
     this._cardImage.alt = this._name;
     this._cardLikes.textContent = this._likesArr.length;
-    const findData =  this._likesArr.find((item) => {
-      return item['_id'] === this._userId
+    const isLiked =  this._likesArr.find((item) => {
+      return item._id === this._userId
     });
 
-    if(findData) {
+    if(isLiked) {
       this._buttonLike.classList.toggle('card__icon_active');
     }
     this._element.querySelector('.card__title').textContent = this._name;

@@ -1,6 +1,18 @@
 .profile__avatar-update {
-   visibility: none;
-   margin: 0;
-   padding: 0;
+   position: absolute;
+   top:0;
+   right: 0;
+   left: 0;
+   bottom:0;
+  background-color: transparent;
    border: none;
+}
+
+.profile__avatar-update:hover {
+   background-image: url(../../../images/editprofile.png);
+   background-color: rgba(0,0,0,0.8);
+   background-repeat: no-repeat;
+   background-position: center;
+   border: none;
+   pointer-events: none;
 }

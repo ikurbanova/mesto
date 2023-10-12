@@ -7,7 +7,7 @@ export class UserInfo {
   }
 
   getUserInfo() {
-    return  { name: this._nameElement.textContent, about: this._aboutElement.textContent};
+    return  { name: this._nameElement.textContent, about: this._aboutElement.textContent, avatar: this._avatarElement.src};
     
   }
 

@@ -1,4 +1,4 @@
-const onError = (response) => {
+const checkResponse = (response) => {
    if (response.ok) {
      return response.json();
    } else {
@@ -7,9 +7,9 @@ const onError = (response) => {
  }
 
 export class Api {
-  constructor(obj) {
-    this._url = obj.url;
-    this._headers = obj.headers;
+  constructor(options) {
+    this._url = options.url;
+    this._headers = options.headers;
   }
 
   getAllCards() {
@@ -17,7 +17,7 @@ export class Api {
       method: 'GET',
       headers: this._headers,
     })
-    .then((response) => onError(response))
+    .then((response) => checkResponse(response))
   }
 
   getProfile() {
@@ -25,16 +25,16 @@ export class Api {
       method: 'GET',
       headers: this._headers,
     })
-    .then((response) => onError(response))
+    .then((response) => checkResponse(response))
   }
 
   editProfileData(name, about) {
     return fetch(this._url + '/users/me', {
       method: 'PATCH',
       headers: this._headers,
-      body: JSON.stringify({ name: name, about: about }),
+      body: JSON.stringify({ name, about}),
     })
-    .then((response) => onError(response))
+    .then((response) => checkResponse(response))
   }
 
   addNewCard(name, link) {
@@ -43,7 +43,7 @@ export class Api {
       headers: this._headers,
       body: JSON.stringify(name, link),
     })
-    .then((response) => onError(response))
+    .then((response) => checkResponse(response))
   }
 
   saveLike(id) {
@@ -51,7 +51,7 @@ export class Api {
       method: 'PUT',
       headers: this._headers,
     })
-    .then((response) => onError(response))
+    .then((response) => checkResponse(response))
   }
 
   deleteLike(id) {
@@ -59,7 +59,7 @@ export class Api {
       method: 'DELETE',
       headers: this._headers,
     })
-    .then((response) => onError(response))
+    .then((response) => checkResponse(response))
   }
 
   deleteCard(id) {
@@ -67,7 +67,7 @@ export class Api {
       method: 'DELETE',
       headers: this._headers,
     })
-    .then((response) => onError(response))
+    .then((response) => checkResponse(response))
   }
 
   updateAvatar(avatar) {
@@ -76,6 +76,6 @@ export class Api {
      headers: this._headers,
      body: JSON.stringify({avatar: avatar}),
     })
-    .then((response) => onError(response))
+    .then((response) => checkResponse(response))
  }
 }

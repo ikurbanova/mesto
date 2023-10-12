@@ -9,7 +9,7 @@ import { validationConfig, profileEditButton } from '../utils/constants.js';
 import { nameInput, jobInput, profileAddButton } from '../utils/constants.js';
 import './index.css';
 import { Api } from '../components/Api.js';
-import { buttonAvatar, avatarUpdate } from '../utils/constants.js';
+import { openPopupAvatar, avatarUpdate } from '../utils/constants.js';
 let userId;
 
 const userInfo = new UserInfo(
@@ -32,10 +32,16 @@ function createCard(item) {
   };
 
   const handleLikeIconClick = (id) => {
-    if (!card.hasMyLike()) {
-      api.saveLike(id).then((data) => card.refreshLike(data.likes));
+    if (!card.isCurrentUserLiked()) {
+      api.saveLike(id).then((data) => card.refreshLike(data.likes))
+      .catch((err) => {
+        console.log(err);
+      })
     } else {
-      api.deleteLike(id).then((data) => card.refreshLike(data.likes));
+      api.deleteLike(id).then((data) => card.refreshLike(data.likes))
+      .catch((err) => {
+        console.log(err);
+      })
     }
   };
   const card = new Card(
@@ -76,6 +82,7 @@ api.getProfile().then((data) => {
   userInfo.setUserInfo(data['name'], data['about'], data['avatar']);
 });
 
+
 const profilePopup = new PopupWithForm(
   '.popup_type_profile',
   handleProfileFormSubmit
@@ -99,6 +106,9 @@ function handleConfirmFormSubmit(card) {
   api.deleteCard(card._id).then(() => {
     card.removeCard();
     confirmPopup.close();
+  })
+  .catch((err) => {
+    console.log(err);
   });
 }
 const imagePopup = new PopupWithImage('.popup_type_img');
@@ -130,9 +140,12 @@ function handleProfileFormSubmit(values) {
   api
     .editProfileData(values['input-name'], values['input-about'])
     .then((data) => {
-      userInfo.setUserInfo(data.name, data.about);
+      userInfo.setUserInfo(data.name, data.about, data.avatar);
       this._changeButtonText('Сохранить');
       profilePopup.close();
+    })
+    .catch((err) => {
+      console.log(err);
     });
 }
 
@@ -145,6 +158,9 @@ function handleCardFormSubmit(values) {
       cardSection.prependItem(createCard(data));
       this._changeButtonText('Сохранить');
       cardPopup.close();
+    })
+    .catch((err) => {
+      console.log(err);
     });
 }
 
@@ -161,12 +177,6 @@ function handleCardClick(name, link) {
   imagePopup.open(name, link);
 }
 
-function handleAvatarbutton() {
-  avatarUpdate.classList.toggle('profile__avatar-update_active');
-}
-
-buttonAvatar.addEventListener('mouseover', handleAvatarbutton);
-buttonAvatar.addEventListener('mouseout', handleAvatarbutton);
 const avatarValidator = new FormValidator(validationConfig, formList[3]);
 avatarValidator.enableValidation();
 
@@ -175,7 +185,6 @@ const avatarPopup = new PopupWithForm(
   handleAvatarFormSubmit
 );
 
-
 avatarPopup.setEventListeners();
 
 function openAvatarPopup() {
@@ -183,13 +192,22 @@ function openAvatarPopup() {
   avatarPopup.open();
 }
 
-buttonAvatar.addEventListener('click', openAvatarPopup);
+openPopupAvatar.addEventListener('click', openAvatarPopup);
 
 function handleAvatarFormSubmit(values) {
-  api.updateAvatar(values['input-url-avatar']).then((data) => {
-    this._changeButtonText('Сохранить');
-    userInfo.setUserInfo(data.name, data.about, data.avatar);
-    avatarPopup.close();
-  });
-  
+  api
+    .updateAvatar(values['input-url-avatar'])
+    .then((data) => {
+      //this._changeButtonText('Сохранить');
+      userInfo.setUserInfo(data.name, data.about, data.avatar);
+      //avatarPopup.close();
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+    .finally(()=> {
+      this._changeButtonText('Сохранить');
+      avatarPopup.close();
+    })
+
 }
