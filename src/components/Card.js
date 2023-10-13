@@ -82,9 +82,7 @@ export class Card {
     this._cardImage.src = this._link;
     this._cardImage.alt = this._name;
     this._cardLikes.textContent = this._likesArr.length;
-    const isLiked =  this._likesArr.find((item) => {
-      return item._id === this._userId
-    });
+    const isLiked =  this.isCurrentUserLiked();
 
     if(isLiked) {
       this._buttonLike.classList.toggle('card__icon_active');

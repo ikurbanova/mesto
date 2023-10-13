@@ -49,7 +49,7 @@ function createCard(item) {
     userId,
     () => openConfirmPopup(card)
   );
-  const hasRemoveButton = item.owner['_id'] === userId; 
+  const hasRemoveButton = item.owner._id === userId; 
 
   const cardElement = card.generateCard(hasRemoveButton);
   return cardElement;
@@ -62,8 +62,8 @@ Promise.all([
   api.getAllCards()
 ])
 .then((dataArr) => {
-  userId = dataArr[0]['_id'];
-  userInfo.setUserInfo(dataArr[0]['name'], dataArr[0]['about'], dataArr[0]['avatar']);
+  userId = dataArr[0]._id;
+  userInfo.setUserInfo(dataArr[0].name, dataArr[0].about, dataArr[0].avatar);
   cardSection = new Section(
     {
       data: dataArr[1],
@@ -137,36 +137,37 @@ profileEditButton.addEventListener('click', openProfilePopup);
 
 function handleProfileFormSubmit(values) {
 
-  profilePopup.changeButtonText('Сохранить...');
+  profilePopup.changeButtonText('Сохранение...');
   api
     .editProfileData(values['input-name'], values['input-about'])
     .then((data) => {
       userInfo.setUserInfo(data.name, data.about, data.avatar);
+      profilePopup.close();
     })
     .catch((err) => {
       console.log(err);
     })
     .finally(()=> {
       profilePopup.changeButtonText('Сохранить');
-      profilePopup.close();
     })
 }
 
 const cardPopup = new PopupWithForm('.popup_type_card', handleCardFormSubmit);
 
 function handleCardFormSubmit(values) {
-  cardPopup.changeButtonText('Сохранить...');
+  cardPopup.changeButtonText('Сохранение...');
   api
     .addNewCard({ name: values['input-card'], link: values['input-url'] })
     .then((data) => {
       cardSection.prependItem(createCard(data));
+      cardPopup.close();
     })
     .catch((err) => {
       console.log(err);
     })
     .finally(()=> {
       cardPopup.changeButtonText('Сохранить');
-      cardPopup.close();
+      
     })
 }
 
@@ -201,18 +202,19 @@ function openAvatarPopup() {
 avatarUpdate.addEventListener('click', openAvatarPopup);
 
 function handleAvatarFormSubmit(values) {
-  avatarPopup.changeButtonText('Сохранить...');
+  avatarPopup.changeButtonText('Сохранение...');
   api
     .updateAvatar(values['input-url-avatar'])
     .then((data) => {
       userInfo.setUserInfo(data.name, data.about, data.avatar);
+      avatarPopup.close();
     })
     .catch((err) => {
       console.log(err);
     })
     .finally(()=> {
       avatarPopup.changeButtonText('Сохранить');
-      avatarPopup.close();
+      
     })
 
 }
