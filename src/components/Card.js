@@ -13,11 +13,10 @@ export class Card {
     this._handleCardClick = handleCardClick;
     this._likesArr = data.likes;
     this._id = data._id;
-    this._cardLikeHandler = handleCardLike;
-    this._userId = userId
+    //this._cardLikeHandler = handleCardLike;
+    this._handleCardLike = handleCardLike;
+    this._userId = userId;
     this._confirmPopupHandler = handlePopupConfirm;
-   
-
   }
 
   _getTemplate() {
@@ -34,7 +33,9 @@ export class Card {
   }
 
   _handleLikeClick() {
-    this._cardLikeHandler(this._id)
+    //this._cardLikeHandler(this._id);
+    (this._handleCardLike(this._id));
+    
   }
 
   refreshLike(arr) {
@@ -51,23 +52,19 @@ export class Card {
     this._cardImage.addEventListener('click', () => {
       this._handleCardClick(this._name, this._link);
     });
+    this._buttonLike.addEventListener('click', this._handleLikeClick.bind(this));
 
-    this._buttonLike.addEventListener('click', () => {
-      this._handleLikeClick();
-    });
+    this._cardRemoveButton.addEventListener('click', 
+      this._openConfirmPopup.bind(this)
+    )
+  };
 
-    this._cardRemoveButton.addEventListener('click', () => {
-      this._openConfirmPopup();
+  isCurrentUserLiked() {
+    return this._likesArr.find((item) => {
+      return item._id === this._userId;
     });
   }
 
-  isCurrentUserLiked() {
-    return this._likesArr.find(item => {
-      return item._id === this._userId
-    })
-
-    }
-  
   getId() {
     return this._id;
   }
@@ -82,9 +79,9 @@ export class Card {
     this._cardImage.src = this._link;
     this._cardImage.alt = this._name;
     this._cardLikes.textContent = this._likesArr.length;
-    const isLiked =  this.isCurrentUserLiked();
+    const isLiked = this.isCurrentUserLiked();
 
-    if(isLiked) {
+    if (isLiked) {
       this._buttonLike.classList.toggle('card__icon_active');
     }
     this._element.querySelector('.card__title').textContent = this._name;

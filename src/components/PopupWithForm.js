@@ -15,6 +15,7 @@ export class PopupWithForm extends Popup {
       res[inputElement.id] = inputElement.value;
     });
     return res;
+    
   }
 
   changeButtonText(buttonText) {
